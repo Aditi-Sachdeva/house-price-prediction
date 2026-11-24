@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Model file (143 MB - exceeds GitHub's normal 100 MB limit)
+models/best_house_price_model.pkl

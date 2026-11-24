@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>House Price Prediction System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>House Price Prediction System</h1>
+            <p>Machine Learning based California Housing Price Estimator</p>
+        </header>
+
+        <form action="/predict" method="POST">
+
+            <h2>Enter Housing Area Details</h2>
+
+            <p class="form-description">
+                Enter the statistical and geographical information
+                about a California housing area to estimate its
+                median house value.
+            </p>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Longitude</label>
+                    <input type="number" step="any"
+                           name="longitude"
+                           placeholder="-122.23" required>
+                    <small>Geographical longitude of the area.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Latitude</label>
+                    <input type="number" step="any"
+                           name="latitude"
+                           placeholder="37.88" required>
+                    <small>Geographical latitude of the area.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Housing Median Age</label>
+                    <input type="number" step="any"
+                           name="housing_median_age"
+                           placeholder="41" required>
+                    <small>Median age of houses in years.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Total Rooms</label>
+                    <input type="number" step="any"
+                           name="total_rooms"
+                           placeholder="880" required>
+                    <small>Total rooms across the housing area.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Total Bedrooms</label>
+                    <input type="number" step="any"
+                           name="total_bedrooms"
+                           placeholder="129" required>
+                    <small>Total bedrooms across the housing area.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Population</label>
+                    <input type="number" step="any"
+                           name="population"
+                           placeholder="322" required>
+                    <small>Total population of the area.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Households</label>
+                    <input type="number" step="any"
+                           name="households"
+                           placeholder="126" required>
+                    <small>Total number of households.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Median Income</label>
+                    <input type="number" step="any"
+                           name="median_income"
+                           placeholder="8.3252" required>
+                    <small>Measured in units of $10,000. For example, 5 = $50,000.</small>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Ocean Proximity</label>
+
+                    <select name="ocean_proximity" required>
+                        {% for category in ocean_categories %}
+                            <option value="{{ category }}">
+                                {{ category }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <small>Distance category of the area relative to the ocean.</small>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict House Price
+            </button>
+
+        </form>
+
+        {% if prediction %}
+            <div class="result success">
+                <h2>Predicted Median House Value</h2>
+                <p>{{ prediction }}</p>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="result error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        <footer>
+            <p>Powered by Random Forest Regression</p>
+            <p>California Housing Dataset</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
