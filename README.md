@@ -1,4 +1,3 @@
-
 # House Price Prediction System
 
 A Machine Learning based California Housing Price Prediction System that estimates median house values using regression algorithms and a Flask web application.
@@ -7,7 +6,7 @@ A Machine Learning based California Housing Price Prediction System that estimat
 
 This project uses the California Housing Dataset to analyze housing-related features and predict median house values.
 
-The project includes data preprocessing, exploratory data analysis, feature engineering, model training, model evaluation, and deployment through a Flask-based web interface.
+It covers data preprocessing, exploratory data analysis, feature engineering, model training, model evaluation, and integration of the trained model into a Flask web application.
 
 ## Technologies Used
 
@@ -55,7 +54,7 @@ A Dummy Regressor was also used as a baseline for comparison.
 
 ## Best Model Performance
 
-Selected Model: Random Forest Regressor
+**Selected Model:** Random Forest Regressor
 
 | Evaluation Metric | Result |
 |---|---:|
@@ -89,7 +88,6 @@ house-price-prediction/
 ├── .gitignore
 │
 ├── models/
-│   ├── best_house_price_model.pkl
 │   └── feature_columns.pkl
 │
 ├── templates/
@@ -102,12 +100,14 @@ house-price-prediction/
     └── ML-Project.ipynb
 ```
 
+**Note:** The trained model file is hosted separately because of its large size and is downloaded during setup.
+
 ## Installation and Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Aditi-Sachdeva/house-price-prediction.git
 cd house-price-prediction
 ```
 
@@ -131,11 +131,23 @@ Windows PowerShell:
 pip install -r requirements.txt
 ```
 
-### 5. Add the trained model
+### 5. Download the trained model
 
-Place the trained model file and feature columns file inside the `models/` directory.
+Download `best_house_price_model.pkl` from the following link:
 
-The large trained model file is not included in this GitHub repository.
+[Download Trained Random Forest Model](https://drive.google.com/file/d/1mJ7hAF-oXhIhWBB8p0viWMS-mkcS28Rq/view?usp=sharing)
+
+Place the downloaded file inside the `models/` directory.
+
+After downloading, the directory should contain:
+
+```text
+models/
+├── best_house_price_model.pkl
+└── feature_columns.pkl
+```
+
+The `feature_columns.pkl` file is already included in the GitHub repository.
 
 ### 6. Run the application
 
@@ -143,7 +155,7 @@ The large trained model file is not included in this GitHub repository.
 python app.py
 ```
 
-Open your browser:
+Open your browser and visit:
 
 ```text
 http://127.0.0.1:5000
@@ -151,10 +163,10 @@ http://127.0.0.1:5000
 
 ## Dataset
 
-California Housing Dataset.
+**California Housing Dataset**
 
 The model predicts median house values for California housing areas (census block groups), rather than the exact selling price of an individual property.
 
 ## Author
 
-Aditi Sachdeva
+**Aditi Sachdeva**
