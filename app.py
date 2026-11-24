@@ -7,9 +7,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# --------------------------------------------------
-# 1. Load the trained model and feature columns
-# --------------------------------------------------
+# Load the trained model and feature columns
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -24,10 +22,7 @@ FEATURE_PATH = os.path.join(
 model = joblib.load(MODEL_PATH)
 feature_columns = joblib.load(FEATURE_PATH)
 
-
-# --------------------------------------------------
-# 2. Ocean proximity categories
-# --------------------------------------------------
+# Ocean proximity categories
 
 OCEAN_CATEGORIES = [
     "<1H OCEAN",
@@ -37,10 +32,7 @@ OCEAN_CATEGORIES = [
     "NEAR OCEAN"
 ]
 
-
-# --------------------------------------------------
-# 3. Home route
-# --------------------------------------------------
+# Home route
 
 @app.route("/")
 def home():
@@ -50,9 +42,7 @@ def home():
     )
 
 
-# --------------------------------------------------
-# 4. House price prediction route
-# --------------------------------------------------
+# House price prediction route
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -96,9 +86,7 @@ def predict():
         if ocean_proximity not in OCEAN_CATEGORIES:
             raise ValueError("Please select a valid ocean proximity.")
 
-        # --------------------------------------------------
-        # 5. Feature engineering
-        # --------------------------------------------------
+        # Feature engineering
 
         rooms_per_household = total_rooms / households
 
@@ -110,9 +98,7 @@ def predict():
             population / households
         )
 
-        # --------------------------------------------------
-        # 6. Prepare input features
-        # --------------------------------------------------
+        # Prepare input features
 
         input_data = {
             "longitude": longitude,
@@ -144,9 +130,7 @@ def predict():
             fill_value=0
         )
 
-        # --------------------------------------------------
-        # 7. Predict house price
-        # --------------------------------------------------
+        # Predict house price
 
         predicted_price = model.predict(input_df)[0]
 
@@ -173,9 +157,7 @@ def predict():
         )
 
 
-# --------------------------------------------------
-# 8. Run Flask application
-# --------------------------------------------------
+# Run Flask application
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
