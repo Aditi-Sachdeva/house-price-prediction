@@ -2,6 +2,11 @@
 
 A Machine Learning based California Housing Price Prediction System that estimates median house values using regression algorithms and a Flask web application.
 
+## Live Demo
+
+**Try the application here:**  
+[House Price Prediction System](https://house-price-prediction-4kjz.onrender.com/)
+
 ## Project Overview
 
 This project uses the California Housing Dataset to analyze housing-related features and predict median house values.
@@ -20,6 +25,7 @@ It covers data preprocessing, exploratory data analysis, feature engineering, mo
 - HTML
 - CSS
 - Jupyter Notebook
+- Render
 
 ## Machine Learning Workflow
 
@@ -34,6 +40,7 @@ It covers data preprocessing, exploratory data analysis, feature engineering, mo
 9. Selecting the best-performing model
 10. Saving the trained model using Joblib
 11. Integrating the model with Flask
+12. Deploying the application on Render
 
 ## Feature Engineering
 
@@ -83,6 +90,7 @@ The application processes the inputs, performs the required feature engineering 
 house-price-prediction/
 │
 ├── app.py
+├── download_model.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
@@ -100,7 +108,7 @@ house-price-prediction/
     └── ML-Project.ipynb
 ```
 
-**Note:** The trained model file is hosted separately because of its large size and is downloaded during setup.
+**Note:** The trained model file is hosted separately because of its large size and is downloaded automatically using `download_model.py`.
 
 ## Installation and Setup
 
@@ -133,21 +141,15 @@ pip install -r requirements.txt
 
 ### 5. Download the trained model
 
-Download `best_house_price_model.pkl` from the following link:
+Run the following command:
 
-[Download Trained Random Forest Model](https://drive.google.com/file/d/1mJ7hAF-oXhIhWBB8p0viWMS-mkcS28Rq/view?usp=sharing)
-
-Place the downloaded file inside the `models/` directory.
-
-After downloading, the directory should contain:
-
-```text
-models/
-├── best_house_price_model.pkl
-└── feature_columns.pkl
+```bash
+python download_model.py
 ```
 
-The `feature_columns.pkl` file is already included in the GitHub repository.
+This downloads the trained Random Forest model from Google Drive and saves it inside the `models/` directory.
+
+The model is hosted separately to avoid GitHub's file size limitations.
 
 ### 6. Run the application
 
@@ -160,6 +162,15 @@ Open your browser and visit:
 ```text
 http://127.0.0.1:5000
 ```
+
+## Deployment
+
+The application is deployed using Render.
+
+**Live Application:**  
+https://house-price-prediction-4kjz.onrender.com/
+
+The deployment process uses Gunicorn to serve the Flask application and downloads the trained model during the build process.
 
 ## Dataset
 
